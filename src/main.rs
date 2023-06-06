@@ -1,5 +1,6 @@
 #![warn(clippy::pedantic)]
 
+mod camera;
 mod map;
 mod map_builder;
 mod player;
@@ -10,6 +11,7 @@ mod prelude {
     pub const SCREEN_HEIGHT: i32 = 50;
     pub const DISPLAY_WIDTH: i32 = SCREEN_WIDTH / 2;
     pub const DISPLAY_HEIGHT: i32 = SCREEN_HEIGHT / 2;
+    pub use crate::camera::*;
     pub use crate::map::*;
     pub use crate::map_builder::*;
     pub use crate::player::*;
