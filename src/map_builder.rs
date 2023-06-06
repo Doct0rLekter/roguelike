@@ -21,7 +21,7 @@ impl MapBuilder {
                 rng.range(2, 10),
             );
             let mut overlap = false;
-            for r in self.rooms.iter() {
+            for r in &self.rooms {
                 if r.intersect(&room) {
                     overlap = true;
                 }
@@ -34,7 +34,7 @@ impl MapBuilder {
                         self.map.tiles[index] = TileType::Floor;
                     }
                 });
-                self.rooms.push(room)
+                self.rooms.push(room);
             }
         }
     }
@@ -67,10 +67,10 @@ impl MapBuilder {
 
             if rng.range(0, 2) == 1 {
                 self.apply_horizontal_tunnel(prev.x, new.x, prev.y);
-                self.apply_vertical_tunnel(prev.y, new.y, prev.x);
+                self.apply_vertical_tunnel(prev.y, new.y, new.x);
             } else {
                 self.apply_vertical_tunnel(prev.y, new.y, prev.x);
-                self.apply_horizontal_tunnel(prev.x, new.x, prev.y);
+                self.apply_horizontal_tunnel(prev.x, new.x, new.y);
             }
         }
     }
